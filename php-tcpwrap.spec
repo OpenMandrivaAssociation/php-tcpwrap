@@ -6,7 +6,7 @@
 Summary:	Tcpwrappers bindings for PHP
 Name:		php-%{modname}
 Version:	1.0
-Release:	%mkrel 10
+Release:	%mkrel 11
 Group:		Development/PHP
 License:	PHP License
 URL:		http://pecl.php.net/package/tcpwrap
@@ -28,6 +28,15 @@ This package handles /etc/hosts.allow and /etc/hosts.deny files.
 %setup -q -n %{modname}-%{version}
 
 %build
+export CFLAGS="%{optflags}"
+export CXXFLAGS="%{optflags}"
+export FFLAGS="%{optflags}"
+
+%if %mdkversion >= 200710
+export CFLAGS="$CFLAGS -fstack-protector"
+export CXXFLAGS="$CXXFLAGS -fstack-protector"
+export FFLAGS="$FFLAGS -fstack-protector"
+%endif
 
 phpize
 %configure2_5x --with-libdir=%{_lib} \
@@ -58,5 +67,3 @@ install -m755 %{soname} %{buildroot}%{_libdir}/php/extensions/
 %doc README*
 %attr(0644,root,root) %config(noreplace) %{_sysconfdir}/php.d/%{inifile}
 %attr(0755,root,root) %{_libdir}/php/extensions/%{soname}
-
-
