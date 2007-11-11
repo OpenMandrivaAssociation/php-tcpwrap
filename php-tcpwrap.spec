@@ -6,7 +6,7 @@
 Summary:	Tcpwrappers bindings for PHP
 Name:		php-%{modname}
 Version:	1.0
-Release:	%mkrel 12
+Release:	%mkrel 13
 Group:		Development/PHP
 License:	PHP License
 URL:		http://pecl.php.net/package/tcpwrap
@@ -15,8 +15,6 @@ Source1:	%{modname}.ini.bz2
 BuildRequires:	php-devel >= 3:5.2.0
 BuildRequires:	tcp_wrappers-devel
 Requires:	tcp_wrappers
-Provides:	php5-tcpwrap
-Obsoletes:	php5-tcpwrap
 Epoch:		1
 BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
@@ -49,6 +47,18 @@ EOF
 
 bzcat %{SOURCE1} > %{buildroot}%{_sysconfdir}/php.d/%{inifile}
 install -m755 %{soname} %{buildroot}%{_libdir}/php/extensions/
+
+%post
+if [ -f /var/lock/subsys/httpd ]; then
+    %{_initrddir}/httpd restart >/dev/null || :
+fi
+
+%postun
+if [ "$1" = "0" ]; then
+    if [ -f /var/lock/subsys/httpd ]; then
+	%{_initrddir}/httpd restart >/dev/null || :
+    fi
+fi
 
 %clean
 [ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
