@@ -16,6 +16,7 @@ BuildRequires:	php-devel >= 3:5.2.0
 BuildRequires:	tcp_wrappers-devel
 Requires:	tcp_wrappers
 Epoch:		1
+BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 This package handles /etc/hosts.allow and /etc/hosts.deny files.
