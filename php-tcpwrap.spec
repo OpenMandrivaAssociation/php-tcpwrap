@@ -6,7 +6,7 @@
 Summary:	Tcpwrappers bindings for PHP
 Name:		php-%{modname}
 Version:	1.1.3
-Release:	%mkrel 11
+Release:	%mkrel 12
 Group:		Development/PHP
 License:	PHP License
 URL:		http://pecl.php.net/package/tcpwrap
