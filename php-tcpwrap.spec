@@ -12,6 +12,7 @@ License:	PHP License
 URL:		http://pecl.php.net/package/tcpwrap
 Source0:	http://pecl.php.net/get/%{modname}-%{version}.tgz
 Source1:	%{modname}.ini
+Patch0:		tcpwrap-1.1.3-php54x.diff
 BuildRequires:	php-devel >= 3:5.2.0
 BuildRequires:	tcp_wrappers-devel
 Requires:	tcp_wrappers
@@ -25,6 +26,8 @@ This package handles /etc/hosts.allow and /etc/hosts.deny files.
 
 %setup -q -n %{modname}-%{version}
 [ "../package*.xml" != "/" ] && mv ../package*.xml .
+
+%patch0 -p0
 
 cp %{SOURCE1} %{inifile}
 
