@@ -9,7 +9,7 @@ Version:	1.1.3
 Release:	22
 Group:		Development/PHP
 License:	PHP License
-URL:		http://pecl.php.net/package/tcpwrap
+URL:		https://pecl.php.net/package/tcpwrap
 Source0:	http://pecl.php.net/get/%{modname}-%{version}.tgz
 Source1:	%{modname}.ini
 Patch0:		tcpwrap-1.1.3-php54x.diff
