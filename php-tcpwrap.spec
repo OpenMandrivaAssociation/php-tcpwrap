@@ -13,6 +13,11 @@ URL:		https://pecl.php.net/package/tcpwrap
 Source0:	http://pecl.php.net/get/%{modname}-%{version}.tgz
 Source1:	%{modname}.ini
 Patch0:		tcpwrap-1.1.3-php54x.diff
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	php-devel >= 3:5.2.0
 BuildRequires:	tcp_wrappers-devel
 Requires:	tcp_wrappers
